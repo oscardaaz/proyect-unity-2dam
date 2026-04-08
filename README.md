@@ -48,8 +48,23 @@ Ejemplos de nombres de rama:
 
 ```bash
 git add .
-git commit -m "Descripción clara de lo que hiciste"
+git commit -m "tipo: descripción clara de lo que hiciste"
 ```
+
+**Convención de commits:**
+
+| Tipo | Cuándo usarlo |
+|------|---------------|
+| `feat:` | Nueva funcionalidad |
+| `fix:` | Corrección de bug |
+| `docs:` | Documentación |
+| `refactor:` | Reestructuración sin cambiar funcionalidad |
+| `chore:` | Mantenimiento (gitignore, configs...) |
+
+Ejemplos:
+- `feat: añadir sistema de movimiento del jugador`
+- `fix: corregir colisión con plataformas`
+- `docs: actualizar README con instrucciones de build`
 
 ### 3. Sube tu rama a GitHub
 
