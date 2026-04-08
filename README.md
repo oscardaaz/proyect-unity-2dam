@@ -6,7 +6,7 @@ Videojuego desarrollado con Unity para el módulo de Programación Multimedia y 
 
 ## Requisitos
 
-- Unity 6000.x (misma versión que el proyecto)
+- Unity 6.3 LTS (6000.3.12f1) (misma versión que el proyecto)
 - Git
 
 ---
