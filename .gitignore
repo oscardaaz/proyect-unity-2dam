@@ -106,3 +106,7 @@ InitTestScene*.unity*
 **/Builds/
 **/Logs/
 **/UserSettings/
+
+# Rider
+**/.idea/
+**/*.DotSettings
