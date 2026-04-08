@@ -11,14 +11,23 @@ Videojuego desarrollado con Unity para el módulo de Programación Multimedia y 
 
 ---
 
-## Clonar el repositorio
+## Abrir en Unity Hub
+
+Tienes dos opciones:
+
+### Opción A: Desde el repositorio (recomendado)
+
+1. Abre Unity Hub
+2. Pulsa **Add** > **Add from repository**
+3. Pega la URL: `https://github.com/oscardaaz/proyect-unity-2dam.git`
+4. Elige carpeta de destino y confirma
+
+### Opción B: Clonar manualmente y abrir desde disco
 
 ```bash
 git clone git@github.com:oscardaaz/proyect-unity-2dam.git
 cd proyect-unity-2dam
 ```
-
-## Abrir en Unity Hub
 
 1. Abre Unity Hub
 2. Pulsa **Add** > **Add project from disk**
