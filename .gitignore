@@ -110,3 +110,5 @@ InitTestScene*.unity*
 # Rider
 **/.idea/
 **/*.DotSettings
+.vscode/
+.vscode/
