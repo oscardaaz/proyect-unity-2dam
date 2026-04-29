@@ -2,7 +2,72 @@ fileFormatVersion: 2
 guid: cb91826aa504bdb47b2cfa539b5afd09
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Attack 1
+    second: {fileID: 7400000, guid: 3b944cf2643efb884bcdf4421baf86ac, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Attack 2
+    second: {fileID: 7400000, guid: 110fa4bbf0bab83d6bfcfd9eb3af9173, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Death
+    second: {fileID: 7400000, guid: 6b176beb094627919892d79860c38e79, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Fall
+    second: {fileID: 7400000, guid: 7c5fcd2c142590dc1b6a96b38444bcab, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Grounded
+    second: {fileID: 7400000, guid: 1d1e42f3a9dfe8f278047f8b159f777b, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Hit
+    second: {fileID: 7400000, guid: d3308dfa638016554bbfc497b215c535, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Idle
+    second: {fileID: 7400000, guid: 023726e684716fb9980304157c850554, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Idle Poisoned
+    second: {fileID: 7400000, guid: 87a111dd035a6dac4b9375da0c48ede7, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Injured
+    second: {fileID: 7400000, guid: 3ca37f6158ce95f25a7b8981ee6241c1, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Injured Poisoned
+    second: {fileID: 7400000, guid: 867f7a1b3f354b2759813cec75657a67, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Jump
+    second: {fileID: 7400000, guid: d876c03f2540a35af9835346efcb0ec4, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Run
+    second: {fileID: 7400000, guid: 7061b5ff58b93f3dc911765f2cce38b1, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Show Off
+    second: {fileID: 7400000, guid: 05d9f1e07627af65084098af97551f37, type: 2}
   serializedVersion: 2
   userData: 
   assetBundleName: 
@@ -102,7 +167,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 0
+  platformSettingsDirtyTick: 639130856998604010
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -2877,7 +2942,55 @@ ScriptedImporter:
     tileSetIndex: 0
     parentIndex: -1
   tileSets: []
-  platformSettings: []
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: iPhone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
