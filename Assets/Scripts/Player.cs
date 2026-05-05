@@ -7,12 +7,15 @@ public class Player : MonoBehaviour
     public Transform groundCheck;
     public float groundRadius = 0.1f;
     public LayerMask groundLayer;
+    public GameObject attackHitbox;
+    public float attackCooldown = 0.5f;
 
     private Rigidbody2D rb2D;
     private Animator animator;
     private PlayerHealth health;
     private float move;
     private bool isGrounded;
+    private bool canAttack = true;
 
     void Start()
     {
@@ -35,6 +38,20 @@ public class Player : MonoBehaviour
         animator.SetFloat("Speed", Mathf.Abs(move));
         animator.SetFloat("VerticalVelocity", rb2D.linearVelocity.y);
         animator.SetBool("isGrounded", isGrounded);
+
+        if (Input.GetButtonDown("Fire1") && canAttack)
+            StartCoroutine(Attack());
+    }
+
+    private System.Collections.IEnumerator Attack()
+    {
+        canAttack = false;
+        animator.SetTrigger("Attack");
+        attackHitbox.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        attackHitbox.SetActive(false);
+        yield return new WaitForSeconds(attackCooldown - 0.2f);
+        canAttack = true;
     }
 
     void FixedUpdate()
