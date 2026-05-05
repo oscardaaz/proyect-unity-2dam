@@ -1962,6 +1962,70 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 390d11bad2e77a19f960a8d737fc492a, type: 3}
+--- !u!1 &1370091041 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7641517697648434186, guid: 9b82a56415a34382288e8e2405270a40, type: 3}
+  m_PrefabInstance: {fileID: 6690654620960319372}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1370091047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370091041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bec064d35e908d3c8494ee9ce24a7df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxLives: 3
+  iFramesDuration: 1.5
+--- !u!1 &1499110613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1499110615}
+  - component: {fileID: 1499110614}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1499110614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499110613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5433ee6431ff96f87668f392d674a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  textCoins: {fileID: 316743661}
+--- !u!4 &1499110615
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499110613}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6952, y: -0.07906, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1681697007
 GameObject:
   m_ObjectHideFlags: 0
@@ -2545,7 +2609,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7641517697648434186, guid: 9b82a56415a34382288e8e2405270a40, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1370091047}
   m_SourcePrefab: {fileID: 100100000, guid: 9b82a56415a34382288e8e2405270a40, type: 3}
 --- !u!1001 &7863374036772467557
 PrefabInstance:
@@ -2628,3 +2695,4 @@ SceneRoots:
   - {fileID: 330941370}
   - {fileID: 208350883}
   - {fileID: 1765209027}
+  - {fileID: 1499110615}
