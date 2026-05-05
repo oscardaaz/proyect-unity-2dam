@@ -8,12 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 7f118e872e2507c44ab7e260b1368eab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/test-oscar.unity
     guid: 63ab9375583bc30f48a37a85b5dde97f
   - enabled: 1
     path: Assets/Scenes/WinScene.unity
     guid: 5f160358a5f47684091424600e53d717
+  - enabled: 1
+    path: Assets/Scenes/mapa_1.unity
+    guid: 084af967fa351754799c978f4afbb02c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
