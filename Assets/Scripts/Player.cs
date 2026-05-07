@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -16,6 +17,11 @@ public class Player : MonoBehaviour
     private float move;
     private bool isGrounded;
     private bool canAttack = true;
+
+    public AudioSource audioSource;
+    public AudioClip coinClip;
+    public AudioClip barrelClip;
+
 
     void Start()
     {
@@ -63,6 +69,7 @@ public class Player : MonoBehaviour
     {
         if (collision.CompareTag("Coin"))
         {
+            audioSource.PlayOneShot(coinClip);
             Destroy(collision.gameObject);
             GameManager.Instance.AddCoin();
         }
@@ -72,6 +79,7 @@ public class Player : MonoBehaviour
 
         if (collision.CompareTag("Barrel"))
         {
+            audioSource.PlayOneShot(barrelClip);
             Vector2 knockbackDir = (rb2D.position - (Vector2)collision.transform.position).normalized;
             rb2D.linearVelocity = Vector2.zero;
             rb2D.AddForce(knockbackDir * 3, ForceMode2D.Impulse);
