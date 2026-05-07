@@ -2,59 +2,94 @@ using UnityEngine;
 
 public class BossAI : MonoBehaviour
 {
-    public float velocidad = 2;
-    public Transform jugador;
-    public int vida = 10;
-    public float rangoDeteccion = 6;
-    public int danio = 2;
+    public int vidaMaxima = 200;
+    private int vidaActual;
+
+    public float velocidadNormal = 3f;
+    public float velocidadRapida = 6f;
+
+    public float cooldownDanio = 0.8f;
+
+    public float porcentajeFase2 = 0.5f;
+
+    private Transform jugador;
+    private Rigidbody2D rb;
+    private float tiempoUltimoDanio;
+    private bool enFase2 = false;
+
+    void Start()
+    {
+        vidaActual = vidaMaxima;
+
+        GameObject objetoJugador = GameObject.FindGameObjectWithTag("Player");
+        if (objetoJugador != null)
+        {
+            jugador = objetoJugador.transform;
+        }
+
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     void Update()
     {
-        float distancia = Vector2.Distance(transform.position, jugador.position);
+        if (jugador == null) return;
 
-        // Mayor vida jefe final
-        if (vida > 5)
-        {
-            if (distancia < rangoDeteccion)
-            {
-                transform.position = Vector2.MoveTowards(
-                    transform.position,
-                    jugador.position,
-                    velocidad * Time.deltaTime
-                );
-            }
-        }
-        else
-        {
-            // FASE 2 (vida baja -> más agresivo)
-            transform.position = Vector2.MoveTowards(
-                transform.position,
-                jugador.position,
-                velocidad * 2 * Time.deltaTime
-            );
-        }
+        PerseguirJugador();
+        ComprobarFase();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void PerseguirJugador()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("Boss golpea al jugador");
+        float velocidadActual = enFase2 ? velocidadRapida : velocidadNormal;
 
-            collision.gameObject.SendMessage("RecibirDanio", danio);
+        float direccion = jugador.position.x > transform.position.x ? 1f : -1f;
+
+        rb.linearVelocity = new Vector2(direccion * velocidadActual, rb.linearVelocity.y);
+
+        transform.localScale = new Vector3(direccion, 1, 1);
+    }
+
+    void ComprobarFase()
+    {
+        float porcentajeVida = (float)vidaActual / vidaMaxima;
+
+        if (porcentajeVida <= porcentajeFase2 && !enFase2)
+        {
+            enFase2 = true;
+            Debug.Log("Boss en fase 2");
         }
     }
 
-    // Método para que el boss reciba daño
     public void RecibirDanio(int cantidad)
     {
-        vida -= cantidad;
-        Debug.Log("Vida Boss: " + vida);
+        vidaActual -= cantidad;
 
-        if (vida <= 0)
+        if (vidaActual <= 0)
         {
-            Debug.Log("Boss derrotado");
             Destroy(gameObject);
         }
+    }
+
+    void OnCollisionStay2D(Collision2D colision)
+    {
+        if (colision.gameObject.CompareTag("Player"))
+        {
+            if (Time.time >= tiempoUltimoDanio + cooldownDanio)
+            {
+                PlayerHealth vidaJugador = colision.gameObject.GetComponent<PlayerHealth>();
+
+                if (vidaJugador != null)
+                {
+                    vidaJugador.TakeDamage();
+                    tiempoUltimoDanio = Time.time;
+                }
+            }
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = enFase2 ? Color.red : Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, 1f);
     }
 }
