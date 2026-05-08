@@ -36,7 +36,8 @@ public class PlayerHealth : MonoBehaviour
     void UpdateHeartsUI()
     {
         for (int i = 0; i < hearts.Length; i++)
-            hearts[i].SetActive(i < lives);
+            if (hearts[i] != null)
+                hearts[i].SetActive(i < lives);
     }
 
     IEnumerator IFrames()
