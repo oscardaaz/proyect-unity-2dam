@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Bomb : MonoBehaviour
 {
@@ -20,17 +21,24 @@ public class Bomb : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rb;
     private Collider2D[] colliders;
+    private SpriteRenderer[] spriteRenderers;
+    private SortingGroup[] sortingGroups;
+    private int explosionStateHash;
     private bool exploded;
 
     void Awake()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         colliders = GetComponents<Collider2D>();
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        sortingGroups = GetComponentsInChildren<SortingGroup>();
 
         if (animator != null)
         {
+            animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
             animator.enabled = false;
+            explosionStateHash = Animator.StringToHash("Base Layer." + explosionStateName);
         }
     }
 
@@ -41,15 +49,12 @@ public class Bomb : MonoBehaviour
             return;
         }
 
-        if (collision.gameObject.CompareTag("Boss"))
-        {
-            BossAI boss = collision.gameObject.GetComponent<BossAI>();
+        BossAI boss = collision.gameObject.GetComponent<BossAI>();
 
-            if (boss != null)
-            {
-                int danioBoss = Mathf.CeilToInt(boss.vidaMaxima * 0.25f);
-                boss.RecibirDanio(danioBoss);
-            }
+        if (boss != null)
+        {
+            int danioBoss = Mathf.CeilToInt(boss.vidaMaxima * 0.25f);
+            boss.RecibirDanio(danioBoss);
 
             Explode();
         }
@@ -95,8 +100,37 @@ public class Bomb : MonoBehaviour
 
         if (animator != null)
         {
+            foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+            {
+                spriteRenderer.enabled = true;
+                spriteRenderer.color = Color.white;
+                spriteRenderer.sortingOrder += 100;
+            }
+
+            foreach (SortingGroup sortingGroup in sortingGroups)
+            {
+                if (sortingGroup == null)
+                {
+                    continue;
+                }
+
+                sortingGroup.sortingOrder += 100;
+            }
+
             animator.enabled = true;
-            animator.Play(explosionStateName, 0, 0f);
+            animator.Rebind();
+
+            if (animator.HasState(0, explosionStateHash))
+            {
+                animator.Play(explosionStateHash, 0, 0f);
+            }
+            else
+            {
+                Debug.LogWarning("Bomb: no se encontro el estado de explosion '" + explosionStateName + "'.", this);
+                animator.Play(explosionStateName, 0, 0f);
+            }
+
+            animator.Update(0f);
             Destroy(gameObject, destroyDelay);
         }
         else
