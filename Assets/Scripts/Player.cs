@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip coinClip;
     public AudioClip barrelClip;
+    private int coins;
+    public TMP_Text textCoins;
 
 
     void Start()
@@ -71,6 +73,8 @@ public class Player : MonoBehaviour
         {
             audioSource.PlayOneShot(coinClip);
             Destroy(collision.gameObject);
+            coins++;
+            textCoins.text = coins.ToString();
             GameManager.Instance.AddCoin();
         }
 
