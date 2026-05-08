@@ -36,10 +36,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("GameOver");
     }
 
-    public void PlayerWin()
+    public void AddDiamond() { }
+
+    public void PlayerWin(string nextScene = "WinScene")
     {
         if (State != GameState.Playing) return;
         State = GameState.Win;
-        SceneManager.LoadScene("WinScene");
+        SceneManager.LoadScene(nextScene);
     }
 }
