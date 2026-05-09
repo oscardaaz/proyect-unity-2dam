@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public AudioClip coinClip;
     public AudioClip barrelClip;
     public AudioClip spikeClip;
+    public AudioClip diamondClip;
 
 
     void Start()
@@ -67,6 +68,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.CompareTag("Coin"))
         {
             audioSource.PlayOneShot(coinClip);
@@ -75,8 +77,10 @@ public class Player : MonoBehaviour
         }
 
         if (collision.CompareTag("Spikes"))
+        {
             audioSource.PlayOneShot(spikeClip);
             health.TakeDamage();
+        }
 
         if (collision.CompareTag("Barrel"))
         {
@@ -91,7 +95,6 @@ public class Player : MonoBehaviour
             collision.GetComponent<Animator>().enabled = true;
             Destroy(collision.gameObject, 0.5f);
 
-            health.TakeDamage();
         }
     }
 }
