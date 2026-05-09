@@ -11,6 +11,12 @@ public class GameManager : MonoBehaviour
 
     public TMP_Text textCoins;
     private int coins;
+    
+    private int diamonds;
+    private int totalDiamonds;
+
+    
+    public TMP_Text textDiamonds;
 
     void Awake()
     {
@@ -21,6 +27,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         State = GameState.Playing;
+
+        diamonds = 0;
+        totalDiamonds = GameObject.FindObjectsByType<Diamond>(FindObjectsSortMode.None).Length;
+        textDiamonds.text = diamonds + "/" + totalDiamonds;
+
+        
     }
 
     public void AddCoin()
@@ -36,12 +48,21 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("GameOver");
     }
 
-    public void AddDiamond() { }
+    public void AddDiamond() { 
+        diamonds++;
+        textDiamonds.text = diamonds + "/" + totalDiamonds;
 
-    public void PlayerWin(string nextScene = "WinScene")
+        if (diamonds >= totalDiamonds){
+            PlayerWin();
+        }
+            
+    }
+
+    public void PlayerWin()
     {
         if (State != GameState.Playing) return;
+
         State = GameState.Win;
-        SceneManager.LoadScene(nextScene);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
