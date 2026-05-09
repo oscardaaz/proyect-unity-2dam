@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip coinClip;
     public AudioClip barrelClip;
+    public AudioClip spikeClip;
 
 
     void Start()
@@ -74,6 +75,7 @@ public class Player : MonoBehaviour
         }
 
         if (collision.CompareTag("Spikes"))
+            audioSource.PlayOneShot(spikeClip);
             health.TakeDamage();
 
         if (collision.CompareTag("Barrel"))
