@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2a9ed476d55cbd54190c52df479ab73b
+guid: 2c27cfbe6921a0c4ca9fcc4bf6d9631e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7269993381915302074
-    second: 8836722_0
+      213: 8760234612048505564
+    second: Fondo WinScene_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 8836722_0
+      name: Fondo WinScene_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 3000
-        height: 2000
+        width: 1672
+        height: 941
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ab89088767434e460800000000000000
-      internalID: 7269993381915302074
+      spriteID: cdaab3847fa929970800000000000000
+      internalID: 8760234612048505564
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      8836722_0: 7269993381915302074
+      Fondo WinScene_0: 8760234612048505564
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
