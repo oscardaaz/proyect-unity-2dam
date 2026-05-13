@@ -5,7 +5,7 @@ public class RestartGame : MonoBehaviour
 {
     public void OnRestartButton()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneTransition.LoadScene("MainMenu");
     }
     public void QuitGame()
     {

@@ -175,7 +175,7 @@ public class BossAI : MonoBehaviour
         if (vidaActual <= 0 && !bossDerrotado)
         {
             bossDerrotado = true;
-            SceneManager.LoadScene("WinScene");
+            SceneTransition.LoadScene("WinScene");
             Destroy(gameObject);
         }
     }

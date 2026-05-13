@@ -14,6 +14,6 @@ public class SplashController : MonoBehaviour
 
     private void CambiarEscena()
     {
-        SceneManager.LoadScene(siguienteEscena);
+        SceneTransition.LoadScene(siguienteEscena);
     }
 }
