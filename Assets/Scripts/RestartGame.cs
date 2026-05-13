@@ -7,4 +7,8 @@ public class RestartGame : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
