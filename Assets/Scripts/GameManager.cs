@@ -31,8 +31,6 @@ public class GameManager : MonoBehaviour
         diamonds = 0;
         totalDiamonds = GameObject.FindObjectsByType<Diamond>(FindObjectsSortMode.None).Length;
         textDiamonds.text = diamonds + "/" + totalDiamonds;
-
-        
     }
 
     public void AddCoin()
@@ -45,7 +43,7 @@ public class GameManager : MonoBehaviour
     {
         if (State != GameState.Playing) return;
         State = GameState.Dead;
-        SceneManager.LoadScene("GameOver");
+        SceneTransition.LoadScene("GameOver");
     }
 
     public void AddDiamond() { 
@@ -63,6 +61,6 @@ public class GameManager : MonoBehaviour
         if (State != GameState.Playing) return;
 
         State = GameState.Win;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneTransition.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

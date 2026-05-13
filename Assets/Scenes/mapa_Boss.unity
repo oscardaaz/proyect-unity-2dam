@@ -949,21 +949,12 @@ PrefabInstance:
       value: -102
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6320732867613781619, guid: 12354a1425d16f6b19662517e8f579c7, type: 3}
+    - {fileID: 6177030596508918862, guid: 12354a1425d16f6b19662517e8f579c7, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12354a1425d16f6b19662517e8f579c7, type: 3}
---- !u!114 &208603086 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1557229290705480123, guid: 12354a1425d16f6b19662517e8f579c7, type: 3}
-  m_PrefabInstance: {fileID: 208603085}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &209937864
 GameObject:
   m_ObjectHideFlags: 0
@@ -8817,7 +8808,7 @@ PrefabInstance:
     - target: {fileID: 6460354274173297552, guid: b0974ec006e39c47b83718fd697d30ec, type: 3}
       propertyPath: textCoins
       value: 
-      objectReference: {fileID: 208603086}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
