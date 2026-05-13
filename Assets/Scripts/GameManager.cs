@@ -31,8 +31,6 @@ public class GameManager : MonoBehaviour
         diamonds = 0;
         totalDiamonds = GameObject.FindObjectsByType<Diamond>(FindObjectsSortMode.None).Length;
         textDiamonds.text = diamonds + "/" + totalDiamonds;
-
-        
     }
 
     public void AddCoin()
