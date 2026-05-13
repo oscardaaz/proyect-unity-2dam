@@ -482,7 +482,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 24.2, y: -92.3}
+  m_AnchoredPosition: {x: 24.199951, y: -92.29999}
   m_SizeDelta: {x: 32, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &63888663
@@ -1774,7 +1774,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: a313feb5ce6a6d24b958d2a0d1e5c669, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.644
+  m_Volume: 0.802
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -8299,6 +8299,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 409087020598228628, guid: 12354a1425d16f6b19662517e8f579c7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 51.1306
+      objectReference: {fileID: 0}
+    - target: {fileID: 409087020598228628, guid: 12354a1425d16f6b19662517e8f579c7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 37.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 409087020598228628, guid: 12354a1425d16f6b19662517e8f579c7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -328.52222
+      objectReference: {fileID: 0}
+    - target: {fileID: 409087020598228628, guid: 12354a1425d16f6b19662517e8f579c7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 203.74998
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557229290705480123, guid: 12354a1425d16f6b19662517e8f579c7, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557229290705480123, guid: 12354a1425d16f6b19662517e8f579c7, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 1557229290705480123, guid: 12354a1425d16f6b19662517e8f579c7, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557229290705480123, guid: 12354a1425d16f6b19662517e8f579c7, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
     - target: {fileID: 6960490891698840336, guid: 12354a1425d16f6b19662517e8f579c7, type: 3}
       propertyPath: m_Name
       value: HUD
