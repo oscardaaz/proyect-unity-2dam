@@ -18,6 +18,15 @@ public class Bomb : MonoBehaviour
     [Range(0f, 1f)]
     public float explosionVolume = 1f;
 
+    [Tooltip("Orden de renderizado normal de la bomba.")]
+    public int sortingOrder = 10;
+
+    [Tooltip("Orden extra que se suma al explotar para que la animacion se vea por encima.")]
+    public int explosionSortingBoost = 100;
+
+    [Tooltip("Radio en el que la explosion puede danar al Boss.")]
+    public float bossDamageRadius = 2f;
+
     private Animator animator;
     private Rigidbody2D rb;
     private Collider2D[] colliders;
@@ -25,20 +34,38 @@ public class Bomb : MonoBehaviour
     private SortingGroup[] sortingGroups;
     private int explosionStateHash;
     private bool exploded;
+    private bool bossDamaged;
 
     void Awake()
     {
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponentInChildren<Animator>(true);
         rb = GetComponent<Rigidbody2D>();
         colliders = GetComponents<Collider2D>();
-        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
-        sortingGroups = GetComponentsInChildren<SortingGroup>();
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>(true);
+        sortingGroups = GetComponentsInChildren<SortingGroup>(true);
 
         if (animator != null)
         {
             animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
-            animator.enabled = false;
             explosionStateHash = Animator.StringToHash("Base Layer." + explosionStateName);
+        }
+
+        foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+        {
+            spriteRenderer.gameObject.SetActive(true);
+            spriteRenderer.enabled = true;
+            spriteRenderer.color = Color.white;
+            spriteRenderer.sortingOrder = sortingOrder;
+        }
+
+        foreach (SortingGroup sortingGroup in sortingGroups)
+        {
+            if (sortingGroup == null)
+            {
+                continue;
+            }
+
+            sortingGroup.sortingOrder = sortingOrder;
         }
     }
 
@@ -53,8 +80,7 @@ public class Bomb : MonoBehaviour
 
         if (boss != null)
         {
-            int danioBoss = Mathf.CeilToInt(boss.vidaMaxima * 0.25f);
-            boss.RecibirDanio(danioBoss);
+            DamageBoss(boss);
 
             Explode();
         }
@@ -77,6 +103,8 @@ public class Bomb : MonoBehaviour
     {
         exploded = true;
         Debug.Log("BOOM");
+
+        DamageNearbyBoss();
 
         if (explosionSound != null)
         {
@@ -104,7 +132,7 @@ public class Bomb : MonoBehaviour
             {
                 spriteRenderer.enabled = true;
                 spriteRenderer.color = Color.white;
-                spriteRenderer.sortingOrder += 100;
+                spriteRenderer.sortingOrder = sortingOrder + explosionSortingBoost;
             }
 
             foreach (SortingGroup sortingGroup in sortingGroups)
@@ -114,11 +142,10 @@ public class Bomb : MonoBehaviour
                     continue;
                 }
 
-                sortingGroup.sortingOrder += 100;
+                sortingGroup.sortingOrder = sortingOrder + explosionSortingBoost;
             }
 
             animator.enabled = true;
-            animator.Rebind();
 
             if (animator.HasState(0, explosionStateHash))
             {
@@ -137,5 +164,42 @@ public class Bomb : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    void DamageNearbyBoss()
+    {
+        if (bossDamaged)
+        {
+            return;
+        }
+
+        BossAI[] bosses = FindObjectsByType<BossAI>(FindObjectsSortMode.None);
+
+        foreach (BossAI boss in bosses)
+        {
+            if (Vector2.Distance(transform.position, boss.transform.position) <= bossDamageRadius)
+            {
+                DamageBoss(boss);
+                return;
+            }
+        }
+    }
+
+    void DamageBoss(BossAI boss)
+    {
+        if (boss == null || bossDamaged)
+        {
+            return;
+        }
+
+        int danioBoss = boss.ObtenerDanioBomba();
+        boss.RecibirDanio(danioBoss, true);
+        bossDamaged = true;
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, bossDamageRadius);
     }
 }

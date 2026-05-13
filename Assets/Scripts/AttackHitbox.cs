@@ -6,11 +6,5 @@ public class AttackHitbox : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        BossAI boss = collision.GetComponent<BossAI>();
-
-        if (boss != null)
-        {
-            boss.RecibirDanio(damage);
-        }
     }
 }

@@ -17,6 +17,7 @@ public class PlayerHealth : MonoBehaviour
     {
         lives = maxLives;
         animator = GetComponent<Animator>();
+        FindHeartsIfNeeded();
         UpdateHeartsUI();
     }
 
@@ -38,6 +39,50 @@ public class PlayerHealth : MonoBehaviour
         for (int i = 0; i < hearts.Length; i++)
             if (hearts[i] != null)
                 hearts[i].SetActive(i < lives);
+    }
+
+    void FindHeartsIfNeeded()
+    {
+        if (hearts != null && hearts.Length >= maxLives)
+        {
+            bool hasAllHearts = true;
+
+            for (int i = 0; i < maxLives; i++)
+            {
+                if (hearts[i] == null)
+                {
+                    hasAllHearts = false;
+                    break;
+                }
+            }
+
+            if (hasAllHearts)
+            {
+                return;
+            }
+        }
+
+        hearts = new GameObject[maxLives];
+
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            hearts[i] = FindSceneObject("Heart" + (i + 1));
+        }
+    }
+
+    GameObject FindSceneObject(string objectName)
+    {
+        Transform[] transforms = Resources.FindObjectsOfTypeAll<Transform>();
+
+        foreach (Transform sceneObject in transforms)
+        {
+            if (sceneObject.name == objectName && sceneObject.gameObject.scene.IsValid())
+            {
+                return sceneObject.gameObject;
+            }
+        }
+
+        return null;
     }
 
     IEnumerator IFrames()
