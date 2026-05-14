@@ -154,8 +154,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 400, y: -600}
-  m_SizeDelta: {x: 800, y: 400}
+  m_AnchoredPosition: {x: 351, y: -165.9198}
+  m_SizeDelta: {x: 669.1462, y: 287.8396}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &267351899
 MonoBehaviour:
@@ -177,20 +177,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gracias por jugar
-
-    
-
-    Oscar Dominguez
-
-    Daniel Montero
-
-    Patricia
-    Adarve
-
-    Jorge Viana
-
-    Miguel Corrochano'
+  m_text: "Gracias por jugar.\n\n    Developers\nOscar Dominguez\nDaniel Montero\nPatricia
+    Adarve\nJorge Viana\nMiguel Corrochano"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5f6923607dfa98c46bdb62cd58187f53, type: 2}
   m_sharedMaterial: {fileID: -9073103173350307047, guid: 5f6923607dfa98c46bdb62cd58187f53, type: 2}
@@ -217,13 +205,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 40.78
+  m_fontSizeBase: 40.78
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -269,7 +257,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 267351896}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!114 &267351901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1744364505ecf54cbe6b1d48f31ddaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Credits
-  scrollSpeed: 80
+  scrollSpeed: 92.8
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,8 +1018,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 48, y: 0.0000076292}
-  m_SizeDelta: {x: 2560, y: 1440}
+  m_AnchoredPosition: {x: -2, y: 0.0000076292}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1217650949
 MonoBehaviour:

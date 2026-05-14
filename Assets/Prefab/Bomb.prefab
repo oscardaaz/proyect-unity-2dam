@@ -158,3 +158,4 @@ MonoBehaviour:
   explosionVolume: 1
   sortingOrder: 10
   explosionSortingBoost: 100
+  bossDamageRadius: 2

@@ -1,9 +1,8 @@
 using UnityEngine;
-using TMPro;
 
 public class Credits : MonoBehaviour
 {
-    public float scrollSpeed = 50f;
+    public float scrollSpeed = 150f;
     private RectTransform rectTransform;
 
     void Start()

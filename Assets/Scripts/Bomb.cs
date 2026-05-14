@@ -106,10 +106,7 @@ public class Bomb : MonoBehaviour
 
         DamageNearbyBoss();
 
-        if (explosionSound != null)
-        {
-            AudioSource.PlayClipAtPoint(explosionSound, transform.position, explosionVolume);
-        }
+        PlayExplosionSound();
 
         foreach (Collider2D bombCollider in colliders)
         {
@@ -164,6 +161,23 @@ public class Bomb : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    void PlayExplosionSound()
+    {
+        if (explosionSound == null)
+        {
+            return;
+        }
+
+        GameObject soundObject = new GameObject("BombExplosionSound");
+        AudioSource audioSource = soundObject.AddComponent<AudioSource>();
+        audioSource.clip = explosionSound;
+        audioSource.volume = explosionVolume;
+        audioSource.spatialBlend = 0f;
+        audioSource.Play();
+
+        Destroy(soundObject, explosionSound.length);
     }
 
     void DamageNearbyBoss()
