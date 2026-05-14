@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
 
     private const string FirstMapSceneName = "mapa_1";
     private const string BossMapSceneName = "mapa_Boss";
-    private const string FirstMapTutorialMessage = "A y D para caminar. Espacio para saltar";
+    private const string FirstMapTutorialMessage = "A y D para caminar. Espacio para saltar. Recoge los diamantes para pasar de nivel.";
     private const string BossMapTutorialMessage = "Empuja las bombas para vencer al minotauro";
     private const float TutorialVisibleTime = 5f;
     private const float TutorialFadeTime = 1f;
