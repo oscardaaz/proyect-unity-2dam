@@ -1784,7 +1784,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1.62
+  orthographic size: 2.27
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1874,6 +1874,12 @@ MonoBehaviour:
   target: {fileID: 533375419}
   smoothSpeed: 5
   cameraBounds: {fileID: 152816187}
+  detachFromParentOnStart: 1
+  fallbackBoundsObjectName: background
+  leftBoundsPadding: 1
+  rightBoundsPadding: 0
+  bottomBoundsPadding: 0
+  topBoundsPadding: 0
 --- !u!1 &173217680
 GameObject:
   m_ObjectHideFlags: 0
@@ -9555,6 +9561,10 @@ PrefabInstance:
     - target: {fileID: 1886868964868854685, guid: 9b82a56415a34382288e8e2405270a40, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2503565638468310051, guid: 9b82a56415a34382288e8e2405270a40, type: 3}
+      propertyPath: orthographic size
+      value: 2.26
       objectReference: {fileID: 0}
     - target: {fileID: 5856456532130409544, guid: 9b82a56415a34382288e8e2405270a40, type: 3}
       propertyPath: coinClip

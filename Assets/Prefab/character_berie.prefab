@@ -183,6 +183,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   target: {fileID: 1886868964868854685}
   smoothSpeed: 5
+  cameraBounds: {fileID: 0}
+  detachFromParentOnStart: 0
+  fallbackBoundsObjectName: background
+  leftBoundsPadding: 0
+  rightBoundsPadding: 0
+  bottomBoundsPadding: 0
+  topBoundsPadding: 0
 --- !u!1 &7641517697648434186
 GameObject:
   m_ObjectHideFlags: 0
