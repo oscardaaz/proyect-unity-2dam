@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2857406650039669317}
   - component: {fileID: 6460354274173297552}
+  - component: {fileID: 7304628139085847641}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,3 +46,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   textCoins: {fileID: 0}
+--- !u!114 &7304628139085847641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5895593666013565541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f58f94cb9a14f14a9dc215ff6fd42c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
+  menuFont: {fileID: 11400000, guid: 5f6923607dfa98c46bdb62cd58187f53, type: 2}
+  mainMenuSceneName: MainMenu
