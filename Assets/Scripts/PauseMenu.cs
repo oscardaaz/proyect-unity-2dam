@@ -19,10 +19,13 @@ public class PauseMenu : MonoBehaviour
     private static readonly Color TitleColor = new Color(0.95f, 0.72f, 0.28f, 1f);
     private static readonly Color TextColor = new Color(0.95f, 0.88f, 0.72f, 1f);
     private static readonly Color ShadowColor = new Color(0f, 0f, 0f, 0.62f);
+    private const float CleanFontSize = 68f;
+    private const float SmallTextScale = 60f / CleanFontSize;
 
     private GameObject pauseCanvas;
     private GameObject firstSelectedButton;
     private Slider volumeSlider;
+    private Material cleanTextMaterial;
     private readonly List<AudioSource> musicSources = new List<AudioSource>();
     private readonly List<float> baseMusicVolumes = new List<float>();
     private readonly Dictionary<int, float> baseMusicVolumeBySource = new Dictionary<int, float>();
@@ -137,18 +140,23 @@ public class PauseMenu : MonoBehaviour
         panelRect.sizeDelta = new Vector2(680f, 660f);
 
         VerticalLayoutGroup layout = panelObject.AddComponent<VerticalLayoutGroup>();
-        layout.padding = new RectOffset(56, 56, 44, 44);
-        layout.spacing = 18f;
-        layout.childAlignment = TextAnchor.MiddleCenter;
+        layout.padding = new RectOffset(56, 56, 22, 44);
+        layout.spacing = 8f;
+        layout.childAlignment = TextAnchor.UpperCenter;
         layout.childControlWidth = true;
-        layout.childControlHeight = false;
+        layout.childControlHeight = true;
         layout.childForceExpandWidth = true;
         layout.childForceExpandHeight = false;
 
-        AddText(panelObject.transform, "PAUSA", 68f, TitleColor, 86f);
+        AddText(panelObject.transform, "PAUSA", 95f, TitleColor, 96f);
+        AddSeparator(panelObject.transform);
+        AddSpacer(panelObject.transform, 69f);
         AddVolumeControl(panelObject.transform);
         firstSelectedButton = AddButton(panelObject.transform, "CONTINUAR", ResumeGame);
+        AddSpacer(panelObject.transform, 10f);
         AddButton(panelObject.transform, "ABANDONAR", ReturnToMainMenu);
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(panelRect);
     }
 
     private TextMeshProUGUI AddText(Transform parent, string text, float fontSize, Color color, float height)
@@ -164,11 +172,35 @@ public class PauseMenu : MonoBehaviour
         label.alignment = TextAlignmentOptions.Center;
         label.color = color;
         label.raycastTarget = false;
+        CleanTextMaterial(label);
 
         LayoutElement layoutElement = textObject.AddComponent<LayoutElement>();
         layoutElement.preferredHeight = height;
 
         return label;
+    }
+
+    private void AddSeparator(Transform parent)
+    {
+        GameObject separatorObject = new GameObject("Separator");
+        separatorObject.transform.SetParent(parent, false);
+
+        Image separator = separatorObject.AddComponent<Image>();
+        separator.color = new Color(0.95f, 0.72f, 0.28f, 0.9f);
+
+        LayoutElement layoutElement = separatorObject.AddComponent<LayoutElement>();
+        layoutElement.preferredHeight = 4f;
+        layoutElement.minHeight = 4f;
+    }
+
+    private void AddSpacer(Transform parent, float height)
+    {
+        GameObject spacerObject = new GameObject("Spacer");
+        spacerObject.transform.SetParent(parent, false);
+
+        LayoutElement layoutElement = spacerObject.AddComponent<LayoutElement>();
+        layoutElement.preferredHeight = height;
+        layoutElement.minHeight = height;
     }
 
     private GameObject AddButton(Transform parent, string text, UnityEngine.Events.UnityAction action)
@@ -194,23 +226,18 @@ public class PauseMenu : MonoBehaviour
         LayoutElement buttonLayout = buttonObject.AddComponent<LayoutElement>();
         buttonLayout.preferredHeight = 78f;
 
-        GameObject textObject = new GameObject("Text (TMP)");
-        textObject.transform.SetParent(buttonObject.transform, false);
-
-        TextMeshProUGUI label = textObject.AddComponent<TextMeshProUGUI>();
-        label.text = text;
-        label.font = menuFont;
-        label.fontSize = 42f;
-        label.fontStyle = FontStyles.Bold;
-        label.alignment = TextAlignmentOptions.Center;
-        label.color = TextColor;
-        label.raycastTarget = false;
+        TextMeshProUGUI label = AddText(buttonObject.transform, text, CleanFontSize, TitleColor, 78f);
+        label.rectTransform.localScale = Vector3.one * SmallTextScale;
 
         RectTransform textRect = label.rectTransform;
         textRect.anchorMin = Vector2.zero;
         textRect.anchorMax = Vector2.one;
         textRect.offsetMin = new Vector2(58f, 0f);
         textRect.offsetMax = Vector2.zero;
+
+        LayoutElement textLayout = label.GetComponent<LayoutElement>();
+        if (textLayout != null)
+            Destroy(textLayout);
 
         AddButtonIcon(buttonObject.transform);
 
@@ -226,12 +253,12 @@ public class PauseMenu : MonoBehaviour
         groupLayout.spacing = 14f;
         groupLayout.childAlignment = TextAnchor.MiddleCenter;
         groupLayout.childControlWidth = true;
-        groupLayout.childControlHeight = false;
+        groupLayout.childControlHeight = true;
         groupLayout.childForceExpandWidth = true;
         groupLayout.childForceExpandHeight = false;
 
         LayoutElement groupElement = groupObject.AddComponent<LayoutElement>();
-        groupElement.preferredHeight = 130f;
+        groupElement.preferredHeight = 120f;
 
         AddVolumeTitle(groupObject.transform);
 
@@ -294,6 +321,37 @@ public class PauseMenu : MonoBehaviour
         volumeSlider.direction = Slider.Direction.LeftToRight;
     }
 
+    private void CleanTextMaterial(TextMeshProUGUI text)
+    {
+        if (cleanTextMaterial == null)
+            cleanTextMaterial = CreateCleanTextMaterial(text.fontSharedMaterial);
+
+        text.outlineWidth = 0f;
+        text.outlineColor = Color.clear;
+        text.fontSharedMaterial = new Material(cleanTextMaterial);
+    }
+
+    private Material CreateCleanTextMaterial(Material sourceMaterial)
+    {
+        Material material = new Material(sourceMaterial);
+        material.DisableKeyword("OUTLINE_ON");
+        material.DisableKeyword("UNDERLAY_ON");
+
+        if (material.HasProperty("_OutlineWidth"))
+            material.SetFloat("_OutlineWidth", 0f);
+
+        if (material.HasProperty("_FaceDilate"))
+            material.SetFloat("_FaceDilate", 0f);
+
+        if (material.HasProperty("_UnderlayColor"))
+            material.SetColor("_UnderlayColor", Color.black);
+
+        if (material.HasProperty("_OutlineColor"))
+            material.SetColor("_OutlineColor", Color.black);
+
+        return material;
+    }
+
     private void AddVolumeTitle(Transform parent)
     {
         GameObject titleObject = new GameObject("VolumeTitle");
@@ -308,13 +366,15 @@ public class PauseMenu : MonoBehaviour
         titleLayout.childForceExpandHeight = false;
 
         LayoutElement titleElement = titleObject.AddComponent<LayoutElement>();
-        titleElement.preferredHeight = 38f;
+        titleElement.preferredHeight = 44f;
 
-        TextMeshProUGUI icon = AddText(titleObject.transform, "♪", 34f, TitleColor, 38f);
-        icon.rectTransform.sizeDelta = new Vector2(38f, 38f);
+        TextMeshProUGUI icon = AddText(titleObject.transform, "♪", CleanFontSize, TitleColor, 44f);
+        icon.rectTransform.localScale = Vector3.one * SmallTextScale;
+        icon.rectTransform.sizeDelta = new Vector2(44f, 44f);
 
-        TextMeshProUGUI label = AddText(titleObject.transform, "VOLUMEN", 34f, TextColor, 38f);
-        label.rectTransform.sizeDelta = new Vector2(190f, 38f);
+        TextMeshProUGUI label = AddText(titleObject.transform, "VOLUMEN", CleanFontSize, TitleColor, 44f);
+        label.rectTransform.localScale = Vector3.one * SmallTextScale;
+        label.rectTransform.sizeDelta = new Vector2(360f, 44f);
     }
 
     private void AddButtonIcon(Transform buttonTransform)
@@ -330,6 +390,7 @@ public class PauseMenu : MonoBehaviour
         icon.alignment = TextAlignmentOptions.Center;
         icon.color = TitleColor;
         icon.raycastTarget = false;
+        CleanTextMaterial(icon);
 
         RectTransform iconRect = icon.rectTransform;
         iconRect.anchorMin = new Vector2(0f, 0.5f);

@@ -7,7 +7,7 @@ public class GameOverScene : MonoBehaviour
 {
     private const float ContentWidth = 960f;
     private const float ContentHeight = 640f;
-    private const float ContentCenterY = 75f;
+    private const float ContentCenterY = 30f;
     private const float PlayButtonScale = 2.5f;
 
     private void Start()
@@ -79,10 +79,19 @@ public class GameOverScene : MonoBehaviour
         quitButton.SetParent(content, false);
 
         ConfigureTitle(title);
-        PositionButton(restartButton, new Vector2(0f, -185f));
-        PositionButton(quitButton, new Vector2(0f, -303f));
+        PositionButton(restartButton, new Vector2(0f, -110f));
+        PositionButton(quitButton, new Vector2(0f, -210f));
         ScaleButtonForPlay(restartButton);
         ScaleButtonForPlay(quitButton);
+        MenuVolumeControl.CreateBelowButtons(
+            this,
+            new[] { "ButtonRestart", "ButtonQuit" },
+            -110f,
+            new Vector2(620f, 96f),
+            50f,
+            50f,
+            new Vector2(580f, 34f),
+            new Vector2(34f, 34f));
     }
 
     private RectTransform GetOrCreateContent(RectTransform panel)
